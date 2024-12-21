@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-// Define a simple route
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
+// Define a simple API route
+app.get('/api/message', (req, res) => {
+    res.json({ message: 'Hello from the server!' });
 });
 
 // Start the server
