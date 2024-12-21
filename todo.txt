@@ -1,0 +1,7 @@
+-add courses and see how it affects gpa live (cumulative and major)
+-move this to a javascript file to make it full stack
+    -make it a chrome extension on the degree audit page
+        -modify html live
+            -see how adding courses will affect gpa
+            -see how adding courses will affect completion
+            
