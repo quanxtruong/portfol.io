@@ -64,8 +64,8 @@ function parseCoursework(filePath) {
     });
 
     const headers = [
-        { id: 'course_number', title: 'Course Number' },
-        { id: 'course_title', title: 'Course Title' },
+        { id: 'course_id', title: 'Course ID' },
+        { id: 'course_name', title: 'Course Name' },
         { id: 'grade', title: 'Grade' },
         { id: 'unique', title: 'Unique' },
         { id: 'type', title: 'Type' },
@@ -75,13 +75,13 @@ function parseCoursework(filePath) {
     ];
 
     const csvWriter = createCsvWriter({
-        path: '../../data/coursework.csv',
+        path: '/Users/quantruong/portfol.io/backend/data/coursework.csv',
         header: headers,
     });
 
     const formattedData = data.map(row => ({
-        course_number: row[0].replace(/\s+/g, ' '),
-        course_title: row[1],
+        course_id: row[0].replace(/\s+/g, ' '),
+        course_name: row[1],
         grade: row[2],
         unique: row[3],
         type: row[4],
