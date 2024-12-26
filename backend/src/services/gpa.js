@@ -126,24 +126,47 @@ class GPA {
     }
 
     getAllClasses() {
-        return this.courseworkData.filter((course) => course.Type === 'In-Residence');
+        return this.courseworkData
+            .filter((course) => course.Type === "In-Residence")
+            .map((course) => ({
+            "Course ID": course["Course ID"], // Map to "Course ID"
+            "Course Name": course["Course Name"], // Ensure this field exists in your data
+            Grade: course.Grade,
+            Unique: course.Unique,
+            Type: course.Type,
+            "Credit Hours": course["Credit Hours"],
+            "Curriculum Flags": course["Curriculum Flags"] || "none", // Default to 'none' if missing
+            "School(s) Enrolled": course["School(s) Enrolled"] || "N/A", // Default to 'N/A' if missing
+            }));
+
     }
 
     getMajorClasses() {
         const inResidenceCourses = this.courseworkData.filter(
             (course) => course.Type === 'In-Residence'
         );
-        return inResidenceCourses.filter((course) =>
-            this.majorCourses.includes(course['Course Number'])
-        );;
+
+        return inResidenceCourses
+            .filter((course) => this.majorCourses.includes(course['Course ID']))
+            .map((course) => ({
+                "Course ID": course["Course ID"], // Map to "Course ID"
+                "Course Name": course["Course Name"], // Ensure this field exists in your data
+                Grade: course.Grade,
+                Unique: course.Unique,
+                Type: course.Type,
+                "Credit Hours": course["Credit Hours"],
+                "Curriculum Flags": course["Curriculum Flags"] || "none", // Default to 'none' if missing
+                "School(s) Enrolled": course["School(s) Enrolled"] || "N/A", // Default to 'N/A' if missing
+            }));
     }
 
-    addCourse(course, grade) {
-
+    addCourse(course, grade, isMajor) {
         let record = null;
         const upperCourse = course.toUpperCase();
+        const upperGrade = grade.toUpperCase();
         const csvFilePath = '/Users/quantruong/portfol.io/backend/data/ut_courses.csv';
-
+        const jsonFilePath = '/Users/quantruong/portfol.io/backend/data/coursework.json'; // Path to save data
+    
         return new Promise((resolve, reject) => {
             fs.createReadStream(csvFilePath)
                 .pipe(parse({ columns: true, skip_empty_lines: true }))
@@ -157,13 +180,35 @@ class GPA {
                         console.log('Not a compatible UT Course.');
                         return resolve(false);
                     }
-
-                    if (!this.courseworkData.some(item => item['Course ID'] === record['Course ID'])) {
-                        this.courseworkData.push(record);
+    
+                    if (this.courseworkData.some(item => item['Course ID'] === record['Course ID'])) {
+                        console.log("Duplicate Course.");
+                        return resolve(false);
                     }
-
-                    console.log('Record added to courseworkData:', record);
-                    resolve(true);
+    
+                    // Format the record
+                    const formattedRecord = {
+                        "Course ID": record['Course ID'],
+                        "Course Name": record['Course Name'].toUpperCase(),
+                        Grade: upperGrade || "",
+                        Unique: record.Unique || "",
+                        Type: record.Type || "In-Residence",
+                        "Credit Hours": record['Credit Hours'] || "0",
+                        "Curriculum Flags": record['Curriculum Flags'] || "none",
+                        "School(s) Enrolled": record['School(s) Enrolled'] || "NASC",
+                    };
+    
+                    this.courseworkData.push(formattedRecord); // Add to in-memory data
+    
+                    // Write updated courseworkData to file
+                    fs.writeFile(jsonFilePath, JSON.stringify(this.courseworkData, null, 2), (err) => {
+                        if (err) {
+                            console.error("Error saving coursework data to file:", err);
+                            return reject(err);
+                        }
+                        console.log("Coursework data saved to file.");
+                        resolve(formattedRecord); // Resolve with the formatted record
+                    });
                 })
                 .on('error', (err) => {
                     console.error('Error processing CSV:', err);
@@ -171,6 +216,7 @@ class GPA {
                 });
         });
     }
+    
 
     
 }
@@ -181,7 +227,7 @@ if (require.main === module) {
     (async () => {
         const filePath = '/Users/quantruong/portfol.io/backend/data/Results - IDA.html'; // Replace with actual path
         const gpaCalculator = await GPA.create(filePath);
-        await gpaCalculator.addCourse("yo gabba Learning")
+        await gpaCalculator.addCourse("M 340L", "A", false)
         console.log(gpaCalculator.getAllClasses())
 
         // console.log('Cumulative GPA:', gpaCalculator.calculateCumulativeGPA());

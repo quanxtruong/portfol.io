@@ -1,0 +1,402 @@
+[
+  {
+    "Course ID": "RHE 306",
+    "Course Name": "COMPOSITN/RHETORIC 1",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "HIS 315K",
+    "Course Name": "U.S. HISTORY 1",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "M 304E",
+    "Course Name": "TRIGONOMETRY",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "-\n      3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "M 301",
+    "Course Name": "COLLEGE ALGEBRA",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "M 405G",
+    "Course Name": "PRECALCULUS",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "4",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "RHE 309J",
+    "Course Name": "COMPOSITN/RHETORIC 2",
+    "Grade": "B",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "HIS 315L",
+    "Course Name": "U.S. HISTORY 2",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "GOV 305C",
+    "Course Name": "FEDERAL GOVERNMENT",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "ECO 304L",
+    "Course Name": "MACROECONOMICS",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "GEO 302P",
+    "Course Name": "ENVIRONMENTAL SCI 1",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "GEO 1LAB",
+    "Course Name": "ENVIRONMENTAL SCI 1",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "1",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "GOV 306C",
+    "Course Name": "TEXAS GOVERNMENT",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "EVS 3FRMN",
+    "Course Name": "ENVIRONMENTAL SCI 2",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "EVS 1LAB",
+    "Course Name": "ENVIRONMENTAL SCI 2",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "1",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "C S 314",
+    "Course Name": "DATA STRUCTURES",
+    "Grade": "B+",
+    "Unique": "52660",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "Quantitative reasoning",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 311",
+    "Course Name": "DISCRETE MATH FOR COMPUTER SCI",
+    "Grade": "A-",
+    "Unique": "52465",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "UGS 016C",
+    "Course Name": "FIRST-YEAR CONNECTION SMNR-CNS",
+    "Grade": "CR",
+    "Unique": "65490",
+    "Type": "In-Residence",
+    "Credit Hours": "-\n      0",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "UGS 303",
+    "Course Name": "MUSIC, PROTEST, SOC MOVMNTS",
+    "Grade": "A",
+    "Unique": "63370",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "M 408D",
+    "Course Name": "SEQ, SERIES, AND MULTIVAR CALC",
+    "Grade": "A",
+    "Unique": "55090",
+    "Type": "In-Residence",
+    "Credit Hours": "4",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 429",
+    "Course Name": "COMP ORGANIZATN AND ARCH",
+    "Grade": "B-",
+    "Unique": "50855",
+    "Type": "In-Residence",
+    "Credit Hours": "4",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 309",
+    "Course Name": "AUTONOM INTELLGNT ROBTCS I-FRI",
+    "Grade": "A",
+    "Unique": "50645",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "ACC 310F",
+    "Course Name": "FOUNDATIONS OF ACCOUNTING-WB",
+    "Grade": "A",
+    "Unique": "02230",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "Quantitative reasoning",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "M 362K",
+    "Course Name": "PROBABILITY I",
+    "Grade": "A-",
+    "Unique": "53845",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C C 302",
+    "Course Name": "INTRO TO ANCIENT ROME-WB",
+    "Grade": "A",
+    "Unique": "32855",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "Global cultures",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "M 408C",
+    "Course Name": "DIFFEREN AND INTEGRAL CALCULUS",
+    "Grade": "CR",
+    "Unique": "26050",
+    "Type": "Credit by Exam",
+    "Credit Hours": "4",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "HIS 301J",
+    "Course Name": "GLOBALIZATION: A MODERN HIS",
+    "Grade": "CR",
+    "Unique": "16790",
+    "Type": "Credit by Exam",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "GRG 305",
+    "Course Name": "THIS HUMAN WORLD: INTRO TO GRG",
+    "Grade": "CR",
+    "Unique": "14400",
+    "Type": "Credit by Exam",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 312",
+    "Course Name": "INTRODUCTION TO PROGRAMMING",
+    "Grade": "CR",
+    "Unique": "24971",
+    "Type": "Credit by Exam",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "E 316N",
+    "Course Name": "WORLD LITERATURE 2",
+    "Grade": "A",
+    "Unique": "00000",
+    "Type": "Transfer",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": ""
+  },
+  {
+    "Course ID": "M 340L",
+    "Course Name": "MATRICES/MATRIX CALCULATNS-C S",
+    "Grade": "A",
+    "Unique": "53930",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "MAN 320F",
+    "Course Name": "FNDTNS MGMT/ORG BEHAVIOR-WB",
+    "Grade": "A-",
+    "Unique": "05640",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "GEO 303",
+    "Course Name": "INTRODUCTION TO GEOLOGY",
+    "Grade": "A",
+    "Unique": "26660",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 378",
+    "Course Name": "AUTON INTELLGNT ROBTCS II-FRI",
+    "Grade": "A",
+    "Unique": "50635",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 439",
+    "Course Name": "PRINCIPLES OF COMPUTER SYS-C S",
+    "Grade": "B+",
+    "Unique": "50475",
+    "Type": "In-Residence",
+    "Credit Hours": "4",
+    "Curriculum Flags": "Independent inquiry",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 331",
+    "Course Name": "ALGORITHMS AND COMPLEXITY",
+    "Grade": "",
+    "Unique": "50940",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "Quantitative reasoning",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C C 303",
+    "Course Name": "INTRO TO CLASSICAL MYTHOLGY-WB",
+    "Grade": "",
+    "Unique": "33970",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "Global cultures",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "C S 373",
+    "Course Name": "SOFTWARE ENGINEERING",
+    "Grade": "",
+    "Unique": "51175",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "Writing",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "MKT 320F",
+    "Course Name": "FOUNDATIONS OF MARKETING-WB",
+    "Grade": "",
+    "Unique": "06360",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "M 325K",
+    "Course Name": "DISCRETE MATHEMATICS",
+    "Grade": "",
+    "Unique": "54075",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  },
+  {
+    "Course ID": "A I 388",
+    "Course Name": "NATURAL LANGUAGE PROCESSING",
+    "Grade": "A",
+    "Unique": "",
+    "Type": "In-Residence",
+    "Credit Hours": "3",
+    "Curriculum Flags": "none",
+    "School(s) Enrolled": "NASC"
+  }
+]

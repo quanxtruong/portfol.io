@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import './styles/App.css';
+import React, { useState } from "react";
+import AddCourseForm from "./components/AddCourseForm";
+import CourseworkTable from "./components/CourseworkTable";
 
+const App = () => {
+  const [refreshTable, setRefreshTable] = useState(false);
 
-function App() {
-    const [message, setMessage] = useState('');
+  const handleCourseAdded = () => {
+    console.log("Refreshing table...");
+    setRefreshTable(!refreshTable); // Toggle refreshTable to trigger re-fetch
+  };
 
-    useEffect(() => {
-        // Fetch data from the back-end
-        fetch('/api/message')
-            .then((response) => response.json())
-            .then((data) => setMessage(data.message))
-            .catch((error) => console.error('Error fetching data:', error));
-    }, []);
-
-    return (
-        <div>
-            <h1 class="hello">React and Express</h1>
-            <p>{message}</p>
-        </div>
-    );
-}
+  return (
+    <div>
+      <h1>GPA Calculator</h1>
+      <AddCourseForm onCourseAdded={handleCourseAdded} />
+      <CourseworkTable refreshTable={refreshTable} />
+    </div>
+  );
+};
 
 export default App;
