@@ -3,7 +3,6 @@ const fs = require('fs');
 const {
     parseCoursework,
     parseMajorCourses,
-    parseAllUTCourses,
 } = require('./parser'); 
 const { parse } = require('csv-parse');
 
@@ -103,7 +102,7 @@ class GPA {
             cumulativePoints += gradePoint * creditHours;
             cumulativeHours += creditHours;
 
-            if (this.majorCourses.includes(course['Course Number'])) {
+            if (this.majorCourses.includes(course['Course ID'])) {
                 majorPoints += gradePoint * creditHours;
                 majorHours += creditHours;
             }
@@ -185,6 +184,14 @@ class GPA {
                         console.log("Duplicate Course.");
                         return resolve(false);
                     }
+
+                    const gradePoints = GRADE_POINTS[upperGrade];
+                    if (gradePoints === undefined) {
+                        console.error("Invalid grade:", upperGrade);
+                        return resolve(false);
+                    }
+
+                    const creditHours = parseFloat(record["Credit Hours"]) || 0;
     
                     // Format the record
                     const formattedRecord = {
@@ -199,6 +206,15 @@ class GPA {
                     };
     
                     this.courseworkData.push(formattedRecord); // Add to in-memory data
+
+                    this.cumulativePoints += gradePoints * creditHours
+                    this.cumulativeHours += creditHours
+
+                    if (isMajor) {
+                        this.majorPoints += gradePoints * creditHours
+                        this.majorHours += creditHours
+                    }
+                        
     
                     // Write updated courseworkData to file
                     fs.writeFile(jsonFilePath, JSON.stringify(this.courseworkData, null, 2), (err) => {

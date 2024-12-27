@@ -50,5 +50,21 @@ app.post("/api/coursework", async (req, res) => {
   }
 });
 
+app.get("/api/gpa", (req, res) => {
+  try {
+    if (!gpaCalculatorInstance) {
+      return res.status(500).json({ error: "GPA instance not initialized." });
+    }
+
+    const cumulativeGPA = gpaCalculatorInstance.calculateCumulativeGPA();
+    const majorGPA = gpaCalculatorInstance.calculateMajorGPA();
+    res.status(200).json({ cumulativeGPA, majorGPA });
+  } catch (error) {
+    console.error("Error calculating GPA:", error);
+    res.status(500).json({ error: "Failed to calculate GPA." });
+  }
+});
+
+
 const PORT = 5001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
