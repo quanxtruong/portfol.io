@@ -7,7 +7,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "HIS 315K",
@@ -17,7 +18,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 304E",
@@ -27,7 +29,8 @@
     "Type": "Transfer",
     "Credit Hours": "-\n      3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 301",
@@ -37,7 +40,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 405G",
@@ -47,7 +51,8 @@
     "Type": "Transfer",
     "Credit Hours": "4",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "RHE 309J",
@@ -57,7 +62,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "HIS 315L",
@@ -67,7 +73,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "GOV 305C",
@@ -77,7 +84,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "ECO 304L",
@@ -87,7 +95,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "GEO 302P",
@@ -97,7 +106,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "GEO 1LAB",
@@ -107,7 +117,8 @@
     "Type": "Transfer",
     "Credit Hours": "1",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "GOV 306C",
@@ -117,7 +128,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "EVS 3FRMN",
@@ -127,7 +139,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "EVS 1LAB",
@@ -137,7 +150,8 @@
     "Type": "Transfer",
     "Credit Hours": "1",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "C S 314",
@@ -147,7 +161,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "Quantitative reasoning",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C S 311",
@@ -157,7 +172,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "UGS 016C",
@@ -167,7 +183,8 @@
     "Type": "In-Residence",
     "Credit Hours": "-\n      0",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "UGS 303",
@@ -177,7 +194,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 408D",
@@ -187,7 +205,8 @@
     "Type": "In-Residence",
     "Credit Hours": "4",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C S 429",
@@ -197,7 +216,8 @@
     "Type": "In-Residence",
     "Credit Hours": "4",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C S 309",
@@ -207,7 +227,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "ACC 310F",
@@ -217,7 +238,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "Quantitative reasoning",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 362K",
@@ -227,7 +249,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C C 302",
@@ -237,7 +260,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "Global cultures",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 408C",
@@ -247,7 +271,8 @@
     "Type": "Credit by Exam",
     "Credit Hours": "4",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "HIS 301J",
@@ -257,7 +282,8 @@
     "Type": "Credit by Exam",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "GRG 305",
@@ -267,7 +293,8 @@
     "Type": "Credit by Exam",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "C S 312",
@@ -277,7 +304,8 @@
     "Type": "Credit by Exam",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "E 316N",
@@ -287,7 +315,8 @@
     "Type": "Transfer",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": ""
+    "School(s) Enrolled": "",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 340L",
@@ -297,7 +326,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "MAN 320F",
@@ -307,7 +337,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "GEO 303",
@@ -317,7 +348,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C S 378",
@@ -327,7 +359,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C S 439",
@@ -337,7 +370,8 @@
     "Type": "In-Residence",
     "Credit Hours": "4",
     "Curriculum Flags": "Independent inquiry",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C S 331",
@@ -347,7 +381,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "Quantitative reasoning",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "C C 303",
@@ -357,7 +392,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "Global cultures",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "C S 373",
@@ -367,7 +403,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "Writing",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "Yes"
   },
   {
     "Course ID": "MKT 320F",
@@ -377,7 +414,8 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
     "Course ID": "M 325K",
@@ -387,16 +425,18 @@
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   },
   {
-    "Course ID": "A I 391L",
-    "Course Name": "MACHINE LEARNING",
-    "Grade": "A",
+    "Course ID": "C S 371D",
+    "Course Name": "DISTRIBUTED COMPUTING",
+    "Grade": "",
     "Unique": "",
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC"
+    "School(s) Enrolled": "NASC",
+    "Major Course": "No"
   }
 ]

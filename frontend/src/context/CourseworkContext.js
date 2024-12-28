@@ -44,6 +44,18 @@ export const CourseworkProvider = ({ children }) => {
     }
   };
 
+  const updateGrade = async (courseId, grade) => {
+    try {
+      const response = await axios.post("/api/coursework/update-grade", { courseId, grade });
+      if (response.status === 200) {
+        await fetchCoursework(); // Refresh coursework and GPA
+      }
+    } catch (error) {
+      console.error("Error updating grade:", error);
+    }
+  };
+  
+
   return (
     <CourseworkContext.Provider
       value={{
@@ -52,6 +64,7 @@ export const CourseworkProvider = ({ children }) => {
         majorGPA,
         fetchCoursework,
         addCourse,
+        updateGrade,
       }}
     >
       {children}

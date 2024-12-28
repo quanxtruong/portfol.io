@@ -3,15 +3,13 @@ import { CourseworkContext } from "../context/CourseworkContext";
 
 const AddCourseForm = () => {
   const [course, setCourse] = useState("");
-  const [grade, setGrade] = useState("");
   const [isMajor, setIsMajor] = useState(false);
   const { addCourse } = useContext(CourseworkContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addCourse(course, grade, isMajor);
+    await addCourse(course, isMajor);
     setCourse("");
-    setGrade("");
     setIsMajor(false);
   };
 
@@ -27,16 +25,7 @@ const AddCourseForm = () => {
         />
       </label>
       <label>
-        Grade:
-        <input
-          type="text"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Is Major Course:
+        Major Course:
         <input
           type="checkbox"
           checked={isMajor}

@@ -41,46 +41,53 @@ async function fetchWithRetry(url, retries = 3, delay = 2000) {
 }
 
 // Parse coursework from HTML
-function parseCoursework(filePath) {
+async function parseCoursework(filePath) {
+  try {
+    // Read and decode HTML file
     const fileBuffer = fs.readFileSync(filePath);
-    const htmlContent = iconv.decode(fileBuffer, 'iso-8859-1');
+    const htmlContent = iconv.decode(fileBuffer, "iso-8859-1");
     const $ = cheerio.load(htmlContent);
 
-    const coursework = $('#coursework');
-    const rows = coursework.find('tr').not('.alias');
+    // Parse major courses
+    const major_courses = parseMajorCourses(filePath) || []; // Ensure it is an array
+
+    // Extract coursework table rows
+    const coursework = $("#coursework");
+    const rows = coursework.find("tr").not(".alias");
     const data = [];
 
     rows.each((_, row) => {
-        const columns = $(row).find('td');
-        if (columns.length) {
-            const rowData = [];
-            columns.each((_, col) => {
-                rowData.push($(col).text().trim());
-            });
-            if (rowData.length === 8) {
-                data.push(rowData);
-            }
+      const columns = $(row).find("td");
+      if (columns.length) {
+        const rowData = [];
+        columns.each((_, col) => {
+          rowData.push($(col).text().trim());
+        });
+        if (rowData.length === 8) {
+          data.push(rowData);
         }
+      }
     });
 
+    // Define CSV headers
     const headers = [
-        { id: 'course_id', title: 'Course ID' },
-        { id: 'course_name', title: 'Course Name' },
-        { id: 'grade', title: 'Grade' },
-        { id: 'unique', title: 'Unique' },
-        { id: 'type', title: 'Type' },
-        { id: 'credit_hours', title: 'Credit Hours' },
-        { id: 'curriculum_flags', title: 'Curriculum Flags' },
-        { id: 'schools_enrolled', title: 'School(s) Enrolled' },
+      { id: "course_id", title: "Course ID" },
+      { id: "course_name", title: "Course Name" },
+      { id: "grade", title: "Grade" },
+      { id: "unique", title: "Unique" },
+      { id: "type", title: "Type" },
+      { id: "credit_hours", title: "Credit Hours" },
+      { id: "curriculum_flags", title: "Curriculum Flags" },
+      { id: "schools_enrolled", title: "School(s) Enrolled" },
+      { id: "is_major", title: "Major Course" },
     ];
 
-    const csvWriter = createCsvWriter({
-        path: '/Users/quantruong/portfol.io/backend/data/coursework.csv',
-        header: headers,
-    });
 
-    const formattedData = data.map(row => ({
-        course_id: row[0].replace(/\s+/g, ' '),
+    // Format data for CSV
+    const formattedData = data.map((row) => {
+      const formattedCourseID = row[0].replace(/\s+/g, " ").toUpperCase(); // Trim extra spaces
+      return {
+        course_id: formattedCourseID,
         course_name: row[1],
         grade: row[2],
         unique: row[3],
@@ -88,10 +95,25 @@ function parseCoursework(filePath) {
         credit_hours: row[5],
         curriculum_flags: row[6],
         schools_enrolled: row[7],
-    }));
+        is_major: major_courses.includes(formattedCourseID)? "Yes" : "No",
+      };
+    });
 
-    return csvWriter.writeRecords(formattedData).then(() => 'coursework.csv');
+    // Write to CSV
+    const csvWriter = createCsvWriter({
+      path: '/Users/quantruong/portfol.io/backend/data/coursework.csv', // Use environment variable for flexibility
+      header: headers,
+    });
+
+    await csvWriter.writeRecords(formattedData);
+    console.log("Coursework CSV successfully written.");
+    return ["coursework.csv", major_courses];
+  } catch (error) {
+    console.error("Error parsing coursework:", error.message);
+    throw error; // Re-throw error to allow higher-level handling
+  }
 }
+
 
 // Parse major courses from HTML
 function parseMajorCourses(filePath) {

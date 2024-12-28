@@ -50,6 +50,26 @@ app.post("/api/coursework", async (req, res) => {
   }
 });
 
+app.post("/api/coursework/update-grade", async (req, res) => {
+  const { courseId, grade } = req.body;
+  if (!gpaCalculatorInstance) {
+    return res.status(500).json({ error: "GPA instance not initialized." });
+  }
+
+  try {
+    const updated = await gpaCalculatorInstance.updateGrade(courseId, grade);
+    if (updated) {
+      res.status(200).json({ message: "Grade updated successfully." });
+    } else {
+      res.status(404).json({ error: "Course not found or grade invalid." });
+    }
+  } catch (error) {
+    console.error("Error updating grade:", error);
+    res.status(500).json({ error: "Failed to update grade." });
+  }
+});
+
+
 app.get("/api/gpa", (req, res) => {
   try {
     if (!gpaCalculatorInstance) {

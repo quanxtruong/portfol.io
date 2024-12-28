@@ -2,7 +2,6 @@
 const fs = require('fs');
 const {
     parseCoursework,
-    parseMajorCourses,
 } = require('./parser'); 
 const { parse } = require('csv-parse');
 
@@ -40,15 +39,16 @@ class GPA {
 
     async init(filePath) {
         try {
-            const courseworkCsvPath = await parseCoursework(filePath); // Generate coursework CSV
+            
+            const [courseworkCsvPath, majorCourses] = await parseCoursework(filePath); // Generate coursework CSV
             const csvAbsolutePath = "/Users/quantruong/portfol.io/backend/data/" + courseworkCsvPath
+            this.majorCourses = majorCourses
 
             // Load coursework CSV into memory
             this.courseworkData = await this.loadCSV(csvAbsolutePath);
             // console.log(this.courseworkData)
 
-            // Parse major courses
-            this.majorCourses = parseMajorCourses(filePath);
+           
 
             // Calculate points and hours
             const credits = this.getPointsAndHours();
@@ -136,8 +136,8 @@ class GPA {
             "Credit Hours": course["Credit Hours"],
             "Curriculum Flags": course["Curriculum Flags"] || "none", // Default to 'none' if missing
             "School(s) Enrolled": course["School(s) Enrolled"] || "N/A", // Default to 'N/A' if missing
+            "Major Course": course["Major Course"] || "N/A"
             }));
-
     }
 
     getMajorClasses() {
@@ -156,13 +156,13 @@ class GPA {
                 "Credit Hours": course["Credit Hours"],
                 "Curriculum Flags": course["Curriculum Flags"] || "none", // Default to 'none' if missing
                 "School(s) Enrolled": course["School(s) Enrolled"] || "N/A", // Default to 'N/A' if missing
+                "Major Course": course["Major Course"] || "N/A"
             }));
     }
 
-    addCourse(course, grade, isMajor) {
+    addCourse(course, isMajor) {
         let record = null;
         const upperCourse = course.toUpperCase();
-        const upperGrade = grade.toUpperCase();
         const csvFilePath = '/Users/quantruong/portfol.io/backend/data/ut_courses.csv';
         const jsonFilePath = '/Users/quantruong/portfol.io/backend/data/coursework.json'; // Path to save data
     
@@ -185,36 +185,20 @@ class GPA {
                         return resolve(false);
                     }
 
-                    const gradePoints = GRADE_POINTS[upperGrade];
-                    if (gradePoints === undefined) {
-                        console.error("Invalid grade:", upperGrade);
-                        return resolve(false);
-                    }
-
-                    const creditHours = parseFloat(record["Credit Hours"]) || 0;
-    
                     // Format the record
                     const formattedRecord = {
                         "Course ID": record['Course ID'],
                         "Course Name": record['Course Name'].toUpperCase(),
-                        Grade: upperGrade || "",
+                        Grade: "",
                         Unique: record.Unique || "",
                         Type: record.Type || "In-Residence",
                         "Credit Hours": record['Credit Hours'] || "0",
                         "Curriculum Flags": record['Curriculum Flags'] || "none",
                         "School(s) Enrolled": record['School(s) Enrolled'] || "NASC",
+                        "Major Course": isMajor ? "Yes" : "No"
                     };
     
                     this.courseworkData.push(formattedRecord); // Add to in-memory data
-
-                    this.cumulativePoints += gradePoints * creditHours
-                    this.cumulativeHours += creditHours
-
-                    if (isMajor) {
-                        this.majorPoints += gradePoints * creditHours
-                        this.majorHours += creditHours
-                    }
-                        
     
                     // Write updated courseworkData to file
                     fs.writeFile(jsonFilePath, JSON.stringify(this.courseworkData, null, 2), (err) => {
@@ -232,23 +216,59 @@ class GPA {
                 });
         });
     }
+
+    updateGrade(courseId, grade) {
+        const course = this.courseworkData.find((c) => c["Course ID"] === courseId);
+        if (!course) {
+            return false; // Course not found
+        }
+    
+        const oldGradePoints = GRADE_POINTS[course.Grade] || 0;
+        const creditHours = parseFloat(course["Credit Hours"]) || 0;
+    
+        if (grade === null || grade === "") {
+            // Clear grade and update GPA
+            if (course.Grade) { // Only subtract hours if a grade exists
+                this.cumulativePoints -= oldGradePoints * creditHours;
+                this.cumulativeHours -= creditHours;
+    
+                if (course["Major Course"] === "Yes") {
+                    this.majorPoints -= oldGradePoints * creditHours;
+                    this.majorHours -= creditHours;
+                }
+            }
+            course.Grade = ""; // Clear the grade
+        } else if (GRADE_POINTS[grade] !== undefined) {
+            if (course.Grade === "" || course.Grade === null) {
+                // Adding a grade for the first time
+                this.cumulativeHours += creditHours;
+                this.cumulativePoints += GRADE_POINTS[grade] * creditHours;
+    
+                if (course["Major Course"] === "Yes") {
+                    this.majorHours += creditHours;
+                    this.majorPoints += GRADE_POINTS[grade] * creditHours;
+                }
+            } else {
+                // Replacing an existing grade
+                this.cumulativePoints += (GRADE_POINTS[grade] - oldGradePoints) * creditHours;
+                if (course["Major Course"] === "Yes") {
+                    this.majorPoints += (GRADE_POINTS[grade] - oldGradePoints) * creditHours;
+                }
+            }
+    
+            course.Grade = grade; // Update the grade
+        } else {
+            return false; // Invalid grade
+        }
+    
+        return true; // Update successful
+    }
+    
+    
+      
     
 
     
 }
 
-module.exports = GPA;
-
-if (require.main === module) {
-    (async () => {
-        const filePath = '/Users/quantruong/portfol.io/backend/data/Results - IDA.html'; // Replace with actual path
-        const gpaCalculator = await GPA.create(filePath);
-        await gpaCalculator.addCourse("M 340L", "A", false)
-        console.log(gpaCalculator.getAllClasses())
-
-        // console.log('Cumulative GPA:', gpaCalculator.calculateCumulativeGPA());
-        // console.log('Major GPA:', gpaCalculator.calculateMajorGPA());
-        // console.log('All Classes:', gpaCalculator.getAllClasses());
-        // console.log('Major Classes:', gpaCalculator.getMajorClasses());
-    })();
-}
+module.exports = GPA
