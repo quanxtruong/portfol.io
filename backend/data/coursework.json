@@ -154,28 +154,6 @@
     "Major Course": "No"
   },
   {
-    "Course ID": "C S 314",
-    "Course Name": "DATA STRUCTURES",
-    "Grade": "B+",
-    "Unique": "52660",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "Quantitative reasoning",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "Yes"
-  },
-  {
-    "Course ID": "C S 311",
-    "Course Name": "DISCRETE MATH FOR COMPUTER SCI",
-    "Grade": "A-",
-    "Unique": "52465",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "Yes"
-  },
-  {
     "Course ID": "UGS 016C",
     "Course Name": "FIRST-YEAR CONNECTION SMNR-CNS",
     "Grade": "CR",
@@ -209,17 +187,6 @@
     "Major Course": "Yes"
   },
   {
-    "Course ID": "C S 429",
-    "Course Name": "COMP ORGANIZATN AND ARCH",
-    "Grade": "B-",
-    "Unique": "50855",
-    "Type": "In-Residence",
-    "Credit Hours": "4",
-    "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "Yes"
-  },
-  {
     "Course ID": "C S 309",
     "Course Name": "AUTONOM INTELLGNT ROBTCS I-FRI",
     "Grade": "A",
@@ -240,17 +207,6 @@
     "Curriculum Flags": "Quantitative reasoning",
     "School(s) Enrolled": "NASC",
     "Major Course": "No"
-  },
-  {
-    "Course ID": "M 362K",
-    "Course Name": "PROBABILITY I",
-    "Grade": "A-",
-    "Unique": "53845",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "Yes"
   },
   {
     "Course ID": "C C 302",
@@ -330,17 +286,6 @@
     "Major Course": "Yes"
   },
   {
-    "Course ID": "MAN 320F",
-    "Course Name": "FNDTNS MGMT/ORG BEHAVIOR-WB",
-    "Grade": "A-",
-    "Unique": "05640",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "No"
-  },
-  {
     "Course ID": "GEO 303",
     "Course Name": "INTRODUCTION TO GEOLOGY",
     "Grade": "A",
@@ -363,20 +308,9 @@
     "Major Course": "Yes"
   },
   {
-    "Course ID": "C S 439",
-    "Course Name": "PRINCIPLES OF COMPUTER SYS-C S",
-    "Grade": "B+",
-    "Unique": "50475",
-    "Type": "In-Residence",
-    "Credit Hours": "4",
-    "Curriculum Flags": "Independent inquiry",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "Yes"
-  },
-  {
     "Course ID": "C S 331",
     "Course Name": "ALGORITHMS AND COMPLEXITY",
-    "Grade": "",
+    "Grade": "A",
     "Unique": "50940",
     "Type": "In-Residence",
     "Credit Hours": "3",
@@ -385,20 +319,9 @@
     "Major Course": "Yes"
   },
   {
-    "Course ID": "C C 303",
-    "Course Name": "INTRO TO CLASSICAL MYTHOLGY-WB",
-    "Grade": "",
-    "Unique": "33970",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "Global cultures",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "No"
-  },
-  {
     "Course ID": "C S 373",
     "Course Name": "SOFTWARE ENGINEERING",
-    "Grade": "",
+    "Grade": "A",
     "Unique": "51175",
     "Type": "In-Residence",
     "Credit Hours": "3",
@@ -409,30 +332,8 @@
   {
     "Course ID": "MKT 320F",
     "Course Name": "FOUNDATIONS OF MARKETING-WB",
-    "Grade": "",
+    "Grade": "A",
     "Unique": "06360",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "No"
-  },
-  {
-    "Course ID": "M 325K",
-    "Course Name": "DISCRETE MATHEMATICS",
-    "Grade": "",
-    "Unique": "54075",
-    "Type": "In-Residence",
-    "Credit Hours": "3",
-    "Curriculum Flags": "none",
-    "School(s) Enrolled": "NASC",
-    "Major Course": "No"
-  },
-  {
-    "Course ID": "C S 371D",
-    "Course Name": "DISTRIBUTED COMPUTING",
-    "Grade": "",
-    "Unique": "",
     "Type": "In-Residence",
     "Credit Hours": "3",
     "Curriculum Flags": "none",

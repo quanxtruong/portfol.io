@@ -17,10 +17,11 @@ const GRADE_POINTS = {
 };
 
 const CourseworkTable = () => {
-  const { coursework, fetchCoursework, updateGrade } =
+  const { coursework, fetchCoursework, updateGrade, removeCourse } =
     useContext(CourseworkContext);
   // eslint-disable-next-line
   const [editingGrade, setEditingGrade] = useState({}); // Local state for grades being edited
+  const [hoveredRow, setHoveredRow] = useState(null); // State to track hovered row
 
   useEffect(() => {
     fetchCoursework();
@@ -38,6 +39,10 @@ const CourseworkTable = () => {
       updateGrade(courseId, formattedGrade);
     }
   };
+
+  const handleRemoveCourse = (courseId) => {
+    removeCourse(courseId);
+  };
   
 
   if (!coursework.length) return <p>No coursework available.</p>;
@@ -54,17 +59,22 @@ const CourseworkTable = () => {
             <th>Credit Hours</th>
             <th>Type</th>
             <th>Major Course</th>
+            <th>Actions</th> {/* Column for actions */}
           </tr>
         </thead>
         <tbody>
           {coursework.map((course) => (
-            <tr key={course["Course ID"]}>
+            <tr
+              key={course["Course ID"]}
+              onMouseEnter={() => setHoveredRow(course["Course ID"])} // Track hovered row
+              onMouseLeave={() => setHoveredRow(null)} // Reset hover state
+            >
               <td>{course["Course ID"]}</td>
               <td>{course["Course Name"]}</td>
               <td>
                 <input
                   type="text"
-                  value={editingGrade[course["Course ID"]] || course.Grade || ""}
+                  value={course.Grade || ""}
                   onChange={(e) =>
                     handleGradeChange(course["Course ID"], e.target.value)
                   }
@@ -73,7 +83,23 @@ const CourseworkTable = () => {
               </td>
               <td>{course["Credit Hours"]}</td>
               <td>{course.Type}</td>
-              <td>{course["Major Course"] ? "Yes" : "No"}</td>
+              <td>{course["Major Course"]}</td>
+              <td>
+                {hoveredRow === course["Course ID"] && (
+                  <button
+                    style={{
+                      background: "red",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleRemoveCourse(course["Course ID"])}
+                  >
+                    X
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -81,5 +107,6 @@ const CourseworkTable = () => {
     </div>
   );
 };
+
 
 export default CourseworkTable;

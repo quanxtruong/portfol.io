@@ -24,6 +24,7 @@ const GRADE_POINTS = {
 class GPA {
     constructor() {
         this.courseworkData = [];
+        this.csvAbsolutePath = "";
         this.majorCourses = [];
         this.cumulativePoints = 0;
         this.cumulativeHours = 0;
@@ -41,11 +42,11 @@ class GPA {
         try {
             
             const [courseworkCsvPath, majorCourses] = await parseCoursework(filePath); // Generate coursework CSV
-            const csvAbsolutePath = "/Users/quantruong/portfol.io/backend/data/" + courseworkCsvPath
+            this.csvAbsolutePath = "/Users/quantruong/portfol.io/backend/data/" + courseworkCsvPath
             this.majorCourses = majorCourses
 
             // Load coursework CSV into memory
-            this.courseworkData = await this.loadCSV(csvAbsolutePath);
+            this.courseworkData = await this.loadCSV(this.csvAbsolutePath);
             // console.log(this.courseworkData)
 
            
@@ -126,7 +127,7 @@ class GPA {
 
     getAllClasses() {
         return this.courseworkData
-            .filter((course) => course.Type === "In-Residence")
+            .filter((course) => course.Type === "In-Residence" && course.Grade != "CR")
             .map((course) => ({
             "Course ID": course["Course ID"], // Map to "Course ID"
             "Course Name": course["Course Name"], // Ensure this field exists in your data
@@ -215,6 +216,45 @@ class GPA {
                     reject(err);
                 });
         });
+    }
+
+    removeCourse(courseId) {
+
+        const jsonFilePath = '/Users/quantruong/portfol.io/backend/data/coursework.json'; // Path to save data
+        const course = this.courseworkData.find((c) => c["Course ID"] === courseId);
+        if (!course) {
+            return false; // Course not found
+        }
+
+        const creditHours = parseFloat(course["Credit Hours"]) || 0; // Ensure proper numeric handling
+        this.courseworkData = this.courseworkData.filter((c) => c["Course ID"] !== courseId);
+
+        if (course.Grade && course.Grade != "CR") {
+            this.cumulativePoints -= GRADE_POINTS[course.Grade] * creditHours;
+            this.cumulativeHours -= creditHours;
+    
+            if (course["Major Course"] === "Yes") {
+                this.majorPoints -= GRADE_POINTS[course.Grade] * creditHours;
+                this.majorHours -= creditHours;;
+            }
+
+        } 
+
+        // Write updated courseworkData to file
+        return new Promise((resolve, reject) => {
+            fs.writeFile(jsonFilePath, JSON.stringify(this.courseworkData, null, 2), (err) => {
+                if (err) {
+                    console.error("Error saving coursework data to file:", err);
+                    return reject(err);
+                }
+                console.log("Course removed and saved to file.");
+                resolve(course); // Return the removed course data
+            });
+        });
+    }
+    
+    async resetCourses() {
+        
     }
 
     updateGrade(courseId, grade) {

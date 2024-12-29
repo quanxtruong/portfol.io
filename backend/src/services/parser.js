@@ -82,21 +82,21 @@ async function parseCoursework(filePath) {
       { id: "is_major", title: "Major Course" },
     ];
 
-
     // Format data for CSV
     const formattedData = data.map((row) => {
-      const formattedCourseID = row[0].replace(/\s+/g, " ").toUpperCase(); // Trim extra spaces
-      return {
-        course_id: formattedCourseID,
-        course_name: row[1],
-        grade: row[2],
-        unique: row[3],
-        type: row[4],
-        credit_hours: row[5],
-        curriculum_flags: row[6],
-        schools_enrolled: row[7],
-        is_major: major_courses.includes(formattedCourseID)? "Yes" : "No",
-      };
+        const formattedCourseID = row[0].replace(/\s+/g, " ").toUpperCase(); // Trim extra spaces
+        return {
+            course_id: formattedCourseID,
+            course_name: row[1],
+            grade: row[2],
+            unique: row[3],
+            type: row[4],
+            credit_hours: row[5],
+            curriculum_flags: row[6],
+            schools_enrolled: row[7],
+            is_major: major_courses.includes(formattedCourseID)? "Yes" : "No",
+            };
+      
     });
 
     // Write to CSV

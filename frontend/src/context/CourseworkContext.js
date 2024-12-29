@@ -54,6 +54,17 @@ export const CourseworkProvider = ({ children }) => {
       console.error("Error updating grade:", error);
     }
   };
+
+  const removeCourse = async (courseId) => {
+    try {
+      const response = await axios.delete(`/api/coursework/${courseId}`);
+      if (response.status === 200) {
+        await fetchCoursework(); // Refresh coursework and GPA
+      }
+    } catch (error) {
+      console.error("Error removing course:", error);
+    }
+  };
   
 
   return (
@@ -65,6 +76,7 @@ export const CourseworkProvider = ({ children }) => {
         fetchCoursework,
         addCourse,
         updateGrade,
+        removeCourse
       }}
     >
       {children}

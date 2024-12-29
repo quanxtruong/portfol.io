@@ -6,8 +6,8 @@ const GPADisplay = () => {
 
   return (
     <div>
-      <p><strong>Cumulative GPA:</strong> {cumulativeGPA}</p>
-      <p><strong>Major GPA:</strong> {majorGPA}</p>
+      <p><strong></strong>Cumulative GPA: {cumulativeGPA || "0.0"}</p>
+      <p><strong></strong>Major GPA: {majorGPA || "0.0"}</p>
     </div>
   );
 };

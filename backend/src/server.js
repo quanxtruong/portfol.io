@@ -50,6 +50,29 @@ app.post("/api/coursework", async (req, res) => {
   }
 });
 
+app.delete("/api/coursework/:courseId", async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    if (!gpaCalculatorInstance) {
+      return res.status(500).json({ error: "GPA instance not initialized." });
+    }
+
+    const removedCourse = await gpaCalculatorInstance.removeCourse(courseId);
+
+    if (removedCourse) {
+      res.status(200).json({
+        message: "Course removed successfully.",
+        course: removedCourse, // Return removed course for immediate frontend updates
+      });
+    } else {
+      res.status(400).json({ message: "Failed to remove course." });
+    }
+  } catch (error) {
+    console.error("Error removing course:", error);
+    res.status(500).json({ error: "Failed to remove course." });
+  }
+});
+
 app.post("/api/coursework/update-grade", async (req, res) => {
   const { courseId, grade } = req.body;
   if (!gpaCalculatorInstance) {
