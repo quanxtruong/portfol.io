@@ -2,6 +2,7 @@ import React from "react";
 import AddCourseForm from "./components/AddCourseForm";
 import CourseworkTable from "./components/CourseworkTable";
 import GPA from "./components/GPADisplay";
+import ResetCoursesButton from "./components/ResetCoursesButton";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <GPA />
       <AddCourseForm />
       <CourseworkTable />
+      <ResetCoursesButton />
     </div>
   );
 };

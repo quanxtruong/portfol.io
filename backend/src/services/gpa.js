@@ -2,6 +2,7 @@
 const fs = require('fs');
 const {
     parseCoursework,
+    parseCSV,
 } = require('./parser'); 
 const { parse } = require('csv-parse');
 
@@ -46,7 +47,7 @@ class GPA {
             this.majorCourses = majorCourses
 
             // Load coursework CSV into memory
-            this.courseworkData = await this.loadCSV(this.csvAbsolutePath);
+            this.courseworkData = await parseCSV(this.csvAbsolutePath);
             // console.log(this.courseworkData)
 
            
@@ -60,27 +61,6 @@ class GPA {
         } catch (error) {
             console.error(`Error initializing GPA: ${error.message}`);
         }
-    }
-
-    async loadCSV(filePath) {
-        if (!fs.existsSync(filePath)) {
-            throw new Error(`CSV file not found: ${filePath}`);
-        }
-
-        return new Promise((resolve, reject) => {
-            const records = [];
-            fs.createReadStream(filePath)
-                .pipe(parse({ columns: true, skip_empty_lines: true }))
-                .on('data', (row) => {
-                    records.push(row); // Collect rows
-                })
-                .on('end', () => {
-                    resolve(records); // Resolve with all rows
-                })
-                .on('error', (err) => {
-                    reject(err); // Reject on error
-                });
-        });
     }
 
     getPointsAndHours() {
@@ -252,10 +232,6 @@ class GPA {
             });
         });
     }
-    
-    async resetCourses() {
-        
-    }
 
     updateGrade(courseId, grade) {
         const course = this.courseworkData.find((c) => c["Course ID"] === courseId);
@@ -303,11 +279,55 @@ class GPA {
     
         return true; // Update successful
     }
-    
-    
-      
-    
 
+    toggleMajor(courseId) {
+        const course = this.courseworkData.find((c) => c["Course ID"] === courseId);
+        if (!course) {
+          return false; // Course not found
+        }
+      
+        const creditHours = parseFloat(course["Credit Hours"]) || 0;
+        const gradePoints = GRADE_POINTS[course.Grade] || 0;
+        
+        if (course["Major Course"] === "Yes") {
+            // Remove from major courses
+            if (course.Grade) {
+                this.majorPoints -= gradePoints * creditHours;
+                this.majorHours -= creditHours;
+            }
+            course["Major Course"] = "No";
+
+        } else {
+            // Add to major courses
+            if (course.Grade) {
+                this.majorPoints += gradePoints * creditHours;
+                this.majorHours += creditHours;
+            }
+            course["Major Course"] = "Yes";
+        }
+        
+      
+        return true;
+      }
+
+    async resetCourses() {
+        try {
+            // Parse the CSV file
+            this.courseworkData = await parseCSV(this.csvAbsolutePath);
+
+            // Recalculate GPA-related fields
+            const credits = this.getPointsAndHours();
+            this.cumulativePoints = credits.cumulative.points;
+            this.cumulativeHours = credits.cumulative.hours;
+            this.majorPoints = credits.major.points;
+            this.majorHours = credits.major.hours;
+
+            console.log("Courses have been reset successfully.");
+        } catch (error) {
+            console.error("Error resetting courses:", error.message);
+        }
+    }
+      
     
 }
 

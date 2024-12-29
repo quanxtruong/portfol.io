@@ -13,14 +13,12 @@ const GRADE_POINTS = {
   "D+": 1.33,
   "D": 1.0,
   "D-": 0.67,
-  "F": 0.0
+  "F": 0.0,
 };
 
 const CourseworkTable = () => {
-  const { coursework, fetchCoursework, updateGrade, removeCourse } =
+  const { coursework, fetchCoursework, updateGrade, removeCourse, toggleMajor } =
     useContext(CourseworkContext);
-  // eslint-disable-next-line
-  const [editingGrade, setEditingGrade] = useState({}); // Local state for grades being edited
   const [hoveredRow, setHoveredRow] = useState(null); // State to track hovered row
 
   useEffect(() => {
@@ -30,20 +28,21 @@ const CourseworkTable = () => {
 
   const handleGradeChange = (courseId, value) => {
     const formattedGrade = value.toUpperCase();
-  
+
     if (formattedGrade === "") {
-      // Handle empty grade
-      updateGrade(courseId, null); // Pass `null` or a special value to indicate no grade
+      updateGrade(courseId, null); // Handle empty grade
     } else if (GRADE_POINTS[formattedGrade] !== undefined) {
-      // Handle valid grade
-      updateGrade(courseId, formattedGrade);
+      updateGrade(courseId, formattedGrade); // Handle valid grade
     }
+  };
+
+  const handleToggleMajor = (courseId) => {
+    toggleMajor(courseId); // Toggle the major course status
   };
 
   const handleRemoveCourse = (courseId) => {
     removeCourse(courseId);
   };
-  
 
   if (!coursework.length) return <p>No coursework available.</p>;
 
@@ -59,15 +58,15 @@ const CourseworkTable = () => {
             <th>Credit Hours</th>
             <th>Type</th>
             <th>Major Course</th>
-            <th>Actions</th> {/* Column for actions */}
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {coursework.map((course) => (
             <tr
               key={course["Course ID"]}
-              onMouseEnter={() => setHoveredRow(course["Course ID"])} // Track hovered row
-              onMouseLeave={() => setHoveredRow(null)} // Reset hover state
+              onMouseEnter={() => setHoveredRow(course["Course ID"])}
+              onMouseLeave={() => setHoveredRow(null)}
             >
               <td>{course["Course ID"]}</td>
               <td>{course["Course Name"]}</td>
@@ -83,7 +82,13 @@ const CourseworkTable = () => {
               </td>
               <td>{course["Credit Hours"]}</td>
               <td>{course.Type}</td>
-              <td>{course["Major Course"]}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={course["Major Course"] === "Yes"}
+                  onChange={() => handleToggleMajor(course["Course ID"])}
+                />
+              </td>
               <td>
                 {hoveredRow === course["Course ID"] && (
                   <button
@@ -107,6 +112,5 @@ const CourseworkTable = () => {
     </div>
   );
 };
-
 
 export default CourseworkTable;

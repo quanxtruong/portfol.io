@@ -65,6 +65,28 @@ export const CourseworkProvider = ({ children }) => {
       console.error("Error removing course:", error);
     }
   };
+
+  const toggleMajor = async (courseId) => {
+    try {
+      const response = await axios.post("/api/coursework/toggle-major", { courseId });
+      if (response.status === 200) {
+        await fetchCoursework(); // Refresh coursework and GPA
+      }
+    } catch (error) {
+      console.error("Error toggling major course:", error);
+    }
+  };
+
+  const resetCourses = async () => {
+    try {
+      const response = await axios.post("/api/coursework/reset");
+      if (response.status === 200) {
+        await fetchCoursework(); // Refresh coursework after reset
+      }
+    } catch (error) {
+      console.error("Error resetting courses:", error);
+    }
+  };
   
 
   return (
@@ -76,7 +98,9 @@ export const CourseworkProvider = ({ children }) => {
         fetchCoursework,
         addCourse,
         updateGrade,
-        removeCourse
+        removeCourse,
+        toggleMajor, 
+        resetCourses,
       }}
     >
       {children}

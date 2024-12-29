@@ -2,6 +2,7 @@ const fs = require('fs');
 const iconv = require('iconv-lite');
 const cheerio = require('cheerio');
 const axios = require('axios');
+const { parse } = require('csv-parse');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 // Axios instance with custom settings
@@ -262,6 +263,27 @@ async function parseAllUTCourses(baseUrl) {
     }
 }
 
+async function parseCSV(filePath) {
+        if (!fs.existsSync(filePath)) {
+            throw new Error(`CSV file not found: ${filePath}`);
+        }
+
+        return new Promise((resolve, reject) => {
+            const records = [];
+            fs.createReadStream(filePath)
+                .pipe(parse({ columns: true, skip_empty_lines: true }))
+                .on('data', (row) => {
+                    records.push(row); // Collect rows
+                })
+                .on('end', () => {
+                    resolve(records); // Resolve with all rows
+                })
+                .on('error', (err) => {
+                    reject(err); // Reject on error
+                });
+        });
+    }
+
 // Export functions as a plain module
 module.exports = {
     parseCoursework,
@@ -269,4 +291,5 @@ module.exports = {
     fetchMainPage,
     parseDepartment,
     parseAllUTCourses,
+    parseCSV,
 };

@@ -8,7 +8,7 @@ let gpaCalculatorInstance; // Shared GPA instance to manage coursework data
 
 // Initialize GPA instance on server start
 (async () => {
-  const filePath = "/Users/quantruong/portfol.io/backend/data/Results - IDA.html";
+  const filePath = "/Users/quantruong/portfol.io/backend/data/Results - IDA2.html";
   gpaCalculatorInstance = await GPA.create(filePath);
 })();
 
@@ -89,6 +89,39 @@ app.post("/api/coursework/update-grade", async (req, res) => {
   } catch (error) {
     console.error("Error updating grade:", error);
     res.status(500).json({ error: "Failed to update grade." });
+  }
+});
+
+app.post("/api/coursework/toggle-major", async (req, res) => {
+  const { courseId } = req.body;
+  if (!gpaCalculatorInstance) {
+    return res.status(500).json({ error: "GPA instance not initialized." });
+  }
+
+  try {
+    const toggled = await gpaCalculatorInstance.toggleMajor(courseId);
+    if (toggled) {
+      res.status(200).json({ message: "Major course toggled successfully." });
+    } else {
+      res.status(404).json({ error: "Course not found." });
+    }
+  } catch (error) {
+    console.error("Error toggling major course:", error);
+    res.status(500).json({ error: "Failed to toggle major course." });
+  }
+});
+
+app.post("/api/coursework/reset", async (req, res) => {
+  try {
+    if (!gpaCalculatorInstance) {
+      return res.status(500).json({ error: "GPA instance not initialized." });
+    }
+
+    await gpaCalculatorInstance.resetCourses(); // Reset coursework data
+    res.status(200).json({ message: "Courses reset successfully." });
+  } catch (error) {
+    console.error("Error resetting courses:", error);
+    res.status(500).json({ error: "Failed to reset courses." });
   }
 });
 
