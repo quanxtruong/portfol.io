@@ -41,79 +41,78 @@ async function fetchWithRetry(url, retries = 3, delay = 2000) {
     }
 }
 
-// Parse coursework from HTML
 async function parseCoursework(filePath) {
-  try {
-    // Read and decode HTML file
-    const fileBuffer = fs.readFileSync(filePath);
-    const htmlContent = iconv.decode(fileBuffer, "iso-8859-1");
-    const $ = cheerio.load(htmlContent);
-
-    // Parse major courses
-    const major_courses = parseMajorCourses(filePath) || []; // Ensure it is an array
-
-    // Extract coursework table rows
-    const coursework = $("#coursework");
-    const rows = coursework.find("tr").not(".alias");
-    const data = [];
-
-    rows.each((_, row) => {
-      const columns = $(row).find("td");
-      if (columns.length) {
-        const rowData = [];
-        columns.each((_, col) => {
-          rowData.push($(col).text().trim());
-        });
-        if (rowData.length === 8) {
-          data.push(rowData);
+    try {
+      const fileBuffer = fs.readFileSync(filePath);
+      const htmlContent = iconv.decode(fileBuffer, "iso-8859-1");
+      const $ = cheerio.load(htmlContent);
+  
+      const major_courses = parseMajorCourses(filePath) || []; // Ensure it is an array
+  
+      const coursework = $("#coursework");
+      const rows = coursework.find("tr").not(".alias");
+  
+      const data = [];
+      let currentSemester = ""; // Track the semester
+  
+      rows.each((_, row) => {
+        const header = $(row).find("th.section_title");
+        if (header.length) {
+          // Update the current semester when a section title is encountered
+          currentSemester = header.text().trim();
+          currentSemester.replace(/ Courses$/, "")
+        } else {
+          const columns = $(row).find("td");
+          if (columns.length) {
+            const rowData = [];
+            columns.each((_, col) => {
+              rowData.push($(col).text().trim());
+            });
+            if (rowData.length === 8) {
+              data.push({
+                course_id: rowData[0].replace(/\s+/g, " ").toUpperCase(), // Course ID
+                course_name: rowData[1], // Course Name
+                grade: rowData[2], // Grade
+                unique: rowData[3], // Unique
+                type: rowData[4], // Type
+                credit_hours: rowData[5], // Credit Hours
+                curriculum_flags: rowData[6], // Curriculum Flags
+                schools_enrolled: rowData[7], // School(s) Enrolled
+                is_major: major_courses.includes(rowData[0].replace(/\s+/g, " ").toUpperCase()) ? "Yes" : "No", // Major course
+                semester: currentSemester // Semester
+              });
+            }
+          }
         }
-      }
-    });
-
-    // Define CSV headers
-    const headers = [
-      { id: "course_id", title: "Course ID" },
-      { id: "course_name", title: "Course Name" },
-      { id: "grade", title: "Grade" },
-      { id: "unique", title: "Unique" },
-      { id: "type", title: "Type" },
-      { id: "credit_hours", title: "Credit Hours" },
-      { id: "curriculum_flags", title: "Curriculum Flags" },
-      { id: "schools_enrolled", title: "School(s) Enrolled" },
-      { id: "is_major", title: "Major Course" },
-    ];
-
-    // Format data for CSV
-    const formattedData = data.map((row) => {
-        const formattedCourseID = row[0].replace(/\s+/g, " ").toUpperCase(); // Trim extra spaces
-        return {
-            course_id: formattedCourseID,
-            course_name: row[1],
-            grade: row[2],
-            unique: row[3],
-            type: row[4],
-            credit_hours: row[5],
-            curriculum_flags: row[6],
-            schools_enrolled: row[7],
-            is_major: major_courses.includes(formattedCourseID)? "Yes" : "No",
-            };
-      
-    });
-
-    // Write to CSV
-    const csvWriter = createCsvWriter({
-      path: '/Users/quantruong/portfol.io/backend/data/coursework.csv', // Use environment variable for flexibility
-      header: headers,
-    });
-
-    await csvWriter.writeRecords(formattedData);
-    console.log("Coursework CSV successfully written.");
-    return ["coursework.csv", major_courses];
-  } catch (error) {
-    console.error("Error parsing coursework:", error.message);
-    throw error; // Re-throw error to allow higher-level handling
+      });
+  
+      const headers = [
+        { id: "course_id", title: "Course ID" },
+        { id: "course_name", title: "Course Name" },
+        { id: "grade", title: "Grade" },
+        { id: "unique", title: "Unique" },
+        { id: "type", title: "Type" },
+        { id: "credit_hours", title: "Credit Hours" },
+        { id: "curriculum_flags", title: "Curriculum Flags" },
+        { id: "schools_enrolled", title: "School(s) Enrolled" },
+        { id: "is_major", title: "Major Course" },
+        { id: "semester", title: "Semester" }, // New header for semester
+      ];
+  
+      const csvWriter = createCsvWriter({
+        path: "/Users/quantruong/portfol.io/backend/data/coursework.csv",
+        header: headers,
+      });
+  
+      await csvWriter.writeRecords(data);
+      console.log("Coursework CSV successfully written.");
+      return ["coursework.csv", major_courses];
+    } catch (error) {
+      console.error("Error parsing coursework:", error.message);
+      throw error;
+    }
   }
-}
+  
 
 
 // Parse major courses from HTML

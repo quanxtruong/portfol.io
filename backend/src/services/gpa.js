@@ -107,7 +107,7 @@ class GPA {
 
     getAllClasses() {
         return this.courseworkData
-            .filter((course) => course.Type === "In-Residence" && course.Grade != "CR")
+            .filter((course) => (course.Type === "In-Residence" || course.Type === "Transfer") && course.Grade != "CR" )
             .map((course) => ({
             "Course ID": course["Course ID"], // Map to "Course ID"
             "Course Name": course["Course Name"], // Ensure this field exists in your data
@@ -117,7 +117,8 @@ class GPA {
             "Credit Hours": course["Credit Hours"],
             "Curriculum Flags": course["Curriculum Flags"] || "none", // Default to 'none' if missing
             "School(s) Enrolled": course["School(s) Enrolled"] || "N/A", // Default to 'N/A' if missing
-            "Major Course": course["Major Course"] || "N/A"
+            "Major Course": course["Major Course"] || "N/A",
+            "Semester": course.Semester || ""
             }));
     }
 
@@ -137,7 +138,8 @@ class GPA {
                 "Credit Hours": course["Credit Hours"],
                 "Curriculum Flags": course["Curriculum Flags"] || "none", // Default to 'none' if missing
                 "School(s) Enrolled": course["School(s) Enrolled"] || "N/A", // Default to 'N/A' if missing
-                "Major Course": course["Major Course"] || "N/A"
+                "Major Course": course["Major Course"] || "N/A",
+                "Semester": course.Semester || ""
             }));
     }
 
@@ -176,7 +178,8 @@ class GPA {
                         "Credit Hours": record['Credit Hours'] || "0",
                         "Curriculum Flags": record['Curriculum Flags'] || "none",
                         "School(s) Enrolled": record['School(s) Enrolled'] || "NASC",
-                        "Major Course": isMajor ? "Yes" : "No"
+                        "Major Course": isMajor ? "Yes" : "No",
+                        "Semester": record.Semester || ""
                     };
     
                     this.courseworkData.push(formattedRecord); // Add to in-memory data
@@ -279,6 +282,21 @@ class GPA {
     
         return true; // Update successful
     }
+
+    updateSemester(courseId, newSemester) {
+        const course = this.courseworkData.find((c) => c["Course ID"] === courseId);
+        if (!course) {
+          return false; // Course not found
+        }
+      
+        course.Semester = newSemester;
+      
+        // Optionally save changes to JSON file or database
+        const jsonFilePath = '/Users/quantruong/portfol.io/backend/data/coursework.json';
+        fs.writeFileSync(jsonFilePath, JSON.stringify(this.courseworkData, null, 2));
+        
+        return true; // Update successful
+      }
 
     toggleMajor(courseId) {
         const course = this.courseworkData.find((c) => c["Course ID"] === courseId);

@@ -8,7 +8,7 @@ let gpaCalculatorInstance; // Shared GPA instance to manage coursework data
 
 // Initialize GPA instance on server start
 (async () => {
-  const filePath = "/Users/quantruong/portfol.io/backend/data/Results - IDA2.html";
+  const filePath = "/Users/quantruong/portfol.io/backend/data/Results - IDA.html";
   gpaCalculatorInstance = await GPA.create(filePath);
 })();
 
@@ -91,6 +91,27 @@ app.post("/api/coursework/update-grade", async (req, res) => {
     res.status(500).json({ error: "Failed to update grade." });
   }
 });
+
+app.post("/api/coursework/update-semester", async (req, res) => {
+  const { courseId, newSemester } = req.body;
+
+  if (!gpaCalculatorInstance) {
+    return res.status(500).json({ error: "GPA instance not initialized." });
+  }
+
+  try {
+    const updated = gpaCalculatorInstance.updateSemester(courseId, newSemester);
+    if (updated) {
+      res.status(200).json({ message: "Semester updated successfully." });
+    } else {
+      res.status(404).json({ error: "Course not found." });
+    }
+  } catch (error) {
+    console.error("Error updating semester:", error);
+    res.status(500).json({ error: "Failed to update semester." });
+  }
+});
+
 
 app.post("/api/coursework/toggle-major", async (req, res) => {
   const { courseId } = req.body;

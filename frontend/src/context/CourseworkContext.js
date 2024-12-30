@@ -55,6 +55,20 @@ export const CourseworkProvider = ({ children }) => {
     }
   };
 
+  const updateCourseSemester = async (courseId, newSemester) => {
+    try {
+      const response = await axios.post("/api/coursework/update-semester", {
+        courseId,
+        newSemester,
+      });
+      if (response.status === 200) {
+        await fetchCoursework(); // Refresh coursework after successful update
+      }
+    } catch (error) {
+      console.error("Error updating semester:", error);
+    }
+  };
+
   const removeCourse = async (courseId) => {
     try {
       const response = await axios.delete(`/api/coursework/${courseId}`);
@@ -88,6 +102,17 @@ export const CourseworkProvider = ({ children }) => {
     }
   };
   
+  const groupBySemester = (data) => {
+    return data.reduce((acc, course) => {
+      const semester = course.Semester || "Unknown Semester";
+      if (!acc[semester]) {
+        acc[semester] = [];
+      }
+      acc[semester].push(course);
+      return acc;
+    }, {});
+  };
+  
 
   return (
     <CourseworkContext.Provider
@@ -101,6 +126,8 @@ export const CourseworkProvider = ({ children }) => {
         removeCourse,
         toggleMajor, 
         resetCourses,
+        groupBySemester,
+        updateCourseSemester
       }}
     >
       {children}
