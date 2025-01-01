@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CourseworkContext } from "../context/CourseworkContext";
+// import "../styles/ResetCoursesButton.css"
 
 const ResetCoursesButton = () => {
   const { resetCourses } = useContext(CourseworkContext);
@@ -13,14 +14,6 @@ const ResetCoursesButton = () => {
   return (
     <button
       onClick={handleReset}
-      style={{
-        background: "red",
-        color: "white",
-        padding: "10px 20px",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer",
-      }}
     >
       Reset Courses
     </button>

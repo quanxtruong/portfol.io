@@ -1,0 +1,44 @@
+/* Coursework Table Styling */
+
+.coursework-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Adjust spacing between groups */
+  overflow-x: auto; /* Allow horizontal scrolling for small screens */
+}
+
+.academic-year-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem; /* Reduced spacing within the year group */
+}
+
+.column-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Distribute columns evenly */
+  gap: 0.2rem; /* Adjust spacing for tighter layout */
+}
+
+.column {
+  flex: 1; /* Ensure columns take equal space */
+}
+
+table {
+  width: 100%; /* Ensure the table spans available space */
+  font-size: 0.9rem; /* Reduce font size for compactness */
+  border-collapse: collapse; /* Remove gaps between table cells */
+  table-layout: fixed; /* Enforce equal column widths */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  td {
+    max-width: 100px; /* Reduce max width for smaller screens */
+  }
+
+  table {
+    font-size: 0.8rem; /* Reduce font size for smaller screens */
+  }
+}

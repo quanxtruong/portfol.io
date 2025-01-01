@@ -241,6 +241,11 @@ class GPA {
         if (!course) {
             return false; // Course not found
         }
+
+        if (course.Type != "In-Residence") {
+            course.Grade = grade;
+            return true;
+        }
     
         const oldGradePoints = GRADE_POINTS[course.Grade] || 0;
         const creditHours = parseFloat(course["Credit Hours"]) || 0;

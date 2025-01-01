@@ -1,0 +1,87 @@
+
+/* Ensure the table has a fixed layout for consistent column widths */
+table {
+  table-layout: fixed; /* Fix column widths */
+  width: 100%; /* Ensure the table spans the full width */
+  border-collapse: collapse; /* Remove gaps between cells */
+  margin: 0; /* Remove unnecessary margin around the table */
+}
+
+/* General styling for table cells */
+td {
+  vertical-align: middle; /* Align content vertically in the center */
+  overflow: hidden; /* Ensure content does not overflow */
+  white-space: nowrap; /* Prevent wrapping by default */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  padding: 0.3rem; /* Reduced padding for tighter layout */
+  box-sizing: border-box; /* Include padding and borders in width/height calculation */
+  transition: all 0.3s ease; /* Smooth transitions for any size changes */
+}
+
+/* Course row styling */
+.coursework-row {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, height 0.3s ease;
+}
+
+.coursework-row:hover {
+  transform: scale(1.01); /* Slight scale effect */
+  box-shadow: 0 5px 15px #00000033;
+  height: auto; /* Allow the row to expand */
+}
+
+/* Specific styling for course name cell */
+td.course-name {
+  width: 100%; /* Provide more space for the course name column */
+  white-space: nowrap; /* Prevent wrapping by default */
+  overflow: hidden; /* Prevent content overflow */
+  text-overflow: ellipsis; /* Add ellipsis */
+}
+
+/* Course name hover behavior */
+td.course-name:hover {
+  white-space: normal; /* Allow wrapping of text */
+  overflow-wrap: break-word; /* Break long words */
+  word-wrap: break-word; /* Ensure compatibility across browsers */
+  overflow: visible; /* Ensure full text is visible */
+  text-overflow: unset; /* Remove ellipsis */
+  z-index: 10; /* Ensure this cell is on top of others */
+  position: relative; /* Ensure z-index applies */
+  background: #fff; /* Optional: Add background for better visibility */
+  padding: 0.3rem; /* Maintain padding for content readability */
+}
+
+/* Grade cell styling */
+td.grade {
+  padding: 0; /* Remove cell padding */
+  margin: 0; /* Remove margin */
+  width: 100%; /* Ensure the cell takes full width */
+  height: 100%; /* Ensure the cell takes full height */
+  box-sizing: border-box; /* Include padding and borders in width/height calculation */
+}
+
+td.grade input[type="text"] {
+  width: 95%; /* Make the input fill the cell's width */
+  height: 100%; /* Make the input fill the cell's height */
+  box-sizing: border-box; /* Ensure padding and borders are included in size */
+  font-size: 0.9rem; /* Adjust font size for a compact look */
+  border: 1px solid #ccc; /* Add a subtle border */
+  border-radius: 0; /* Remove any default border radius for consistency */
+  padding: 0.2rem; /* Adjust padding inside the input box */
+}
+
+td.grade input[type="text"]:focus {
+  outline: none; /* Remove the default focus outline */
+  border-color: #007bff; /* Add a blue border for focus */
+}
+
+/* Reduce space and padding between sections */
+.coursework-grid {
+  margin: 0; /* Remove outer margin */
+  padding: 0.5rem 0; /* Tighten vertical spacing */
+  gap: 0.5rem; /* Reduce gap between sections */
+}
+
+/* Optional: Highlight row on hover */
+.coursework-row:hover td {
+  background-color: #f9f9f9; /* Subtle background change on hover */
+}

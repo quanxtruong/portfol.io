@@ -33,9 +33,9 @@ export const CourseworkProvider = ({ children }) => {
   };
 
   // Add a new course
-  const addCourse = async (course, grade, isMajor) => {
+  const addCourse = async (course, isMajor) => {
     try {
-      const response = await axios.post("/api/coursework", { course, grade, isMajor });
+      const response = await axios.post("/api/coursework", { course, isMajor });
       if (response.status === 200) {
         await fetchCoursework(); // Refresh coursework and GPA
       }
@@ -80,6 +80,39 @@ export const CourseworkProvider = ({ children }) => {
     }
   };
 
+  const groupByAcademicYear = (coursework) => {
+    return coursework.reduce((acc, course) => {
+      // Skip courses with no semester or those in the Course Bank
+      if (!course.Semester || course.Semester === "Course Bank") {
+        return acc;
+      }
+  
+      // Extract semester and year from the course
+      const [semester, year] = course.Semester.split(" ");
+      const numericYear = parseInt(year, 10);
+  
+      const academicYear =
+        semester === "Fall" ? numericYear : numericYear - 1;
+  
+      if (!acc[academicYear]) {
+        acc[academicYear] = {};
+      }
+  
+      if (!acc[academicYear][semester]) {
+        acc[academicYear][semester] = [];
+      }
+  
+      acc[academicYear][semester].push(course);
+      return acc;
+    }, {});
+  };
+  
+  
+  
+  
+  
+  
+
   const toggleMajor = async (courseId) => {
     try {
       const response = await axios.post("/api/coursework/toggle-major", { courseId });
@@ -102,16 +135,7 @@ export const CourseworkProvider = ({ children }) => {
     }
   };
   
-  const groupBySemester = (data) => {
-    return data.reduce((acc, course) => {
-      const semester = course.Semester || "Unknown Semester";
-      if (!acc[semester]) {
-        acc[semester] = [];
-      }
-      acc[semester].push(course);
-      return acc;
-    }, {});
-  };
+  
   
 
   return (
@@ -126,7 +150,7 @@ export const CourseworkProvider = ({ children }) => {
         removeCourse,
         toggleMajor, 
         resetCourses,
-        groupBySemester,
+        groupByAcademicYear,
         updateCourseSemester
       }}
     >

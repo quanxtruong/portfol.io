@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CourseworkContext } from "../context/CourseworkContext";
+// import "../styles/GPADisplay.css"
 
 const GPADisplay = () => {
   const { cumulativeGPA, majorGPA } = useContext(CourseworkContext);

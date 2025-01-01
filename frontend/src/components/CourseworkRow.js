@@ -1,5 +1,6 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import "../styles/CourseworkRow.css";
 
 const CourseworkRow = ({ course, onGradeChange, onToggleMajor, onRemove }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -13,15 +14,15 @@ const CourseworkRow = ({ course, onGradeChange, onToggleMajor, onRemove }) => {
   return (
     <tr
       ref={drag}
+      className="coursework-row"
       style={{
         opacity: isDragging ? 0.5 : 1,
         cursor: "move",
-        backgroundColor: isDragging ? "#f0f0f0" : "white",
       }}
     >
       <td>{course["Course ID"]}</td>
-      <td>{course["Course Name"]}</td>
-      <td>
+      <td className="course-name" title={course["Course Name"]}>{course["Course Name"]}</td>
+      <td className="grade">
         <input
           type="text"
           value={course.Grade || ""}
@@ -39,7 +40,12 @@ const CourseworkRow = ({ course, onGradeChange, onToggleMajor, onRemove }) => {
         />
       </td>
       <td>
-        <button onClick={() => onRemove(course["Course ID"])}>Remove</button>
+        <button
+          onClick={() => onRemove(course["Course ID"])}
+          className="action-button"
+        >
+          X
+        </button>
       </td>
     </tr>
   );

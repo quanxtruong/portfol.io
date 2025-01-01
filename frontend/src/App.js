@@ -3,6 +3,7 @@ import AddCourseForm from "./components/AddCourseForm";
 import CourseworkTable from "./components/CourseworkTable";
 import GPA from "./components/GPADisplay";
 import ResetCoursesButton from "./components/ResetCoursesButton";
+// import "./styles/Global.css"; 
 
 const App = () => {
   return (

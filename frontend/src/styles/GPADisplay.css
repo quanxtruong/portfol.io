@@ -1,0 +1,17 @@
+/* GPADisplay.css */
+div {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+  
+p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+  
+strong {
+    color: #007bff;
+}
+  
