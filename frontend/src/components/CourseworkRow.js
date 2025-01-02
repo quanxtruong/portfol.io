@@ -5,7 +5,7 @@ import "../styles/CourseworkRow.css";
 const CourseworkRow = ({ course, onGradeChange, onToggleMajor, onRemove }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "COURSEWORK",
-    item: { courseId: course["Course ID"], grade: course.Grade || "" }, // Include grade here
+    item: { courseId: course["Course ID"] },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -21,9 +21,7 @@ const CourseworkRow = ({ course, onGradeChange, onToggleMajor, onRemove }) => {
       }}
     >
       <td>{course["Course ID"]}</td>
-      <td className="course-name" title={course["Course Name"]}>
-        {course["Course Name"]}
-      </td>
+      <td className="course-name" title={course["Course Name"]}>{course["Course Name"]}</td>
       <td className="grade">
         <input
           type="text"

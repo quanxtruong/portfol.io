@@ -13,13 +13,7 @@ const SemesterLabel = ({
 }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "COURSEWORK",
-    drop: (item) => {
-      const draggedCourse = courses.find(
-        (course) => course["Course ID"] === item.courseId
-      );
-      const currentGrade = draggedCourse?.Grade || ""; // Extract the current grade of the course
-      onDrop(item.courseId, semester, currentGrade); // Pass the grade along with courseId and semester
-    },
+    drop: (item) => onDrop(item.courseId, semester),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
