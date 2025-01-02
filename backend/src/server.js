@@ -29,12 +29,12 @@ app.get("/api/coursework", (req, res) => {
 // POST endpoint to add a new course
 app.post("/api/coursework", async (req, res) => {
   try {
-    const { course, grade, isMajor } = req.body;
+    const { course } = req.body;
     if (!gpaCalculatorInstance) {
       return res.status(500).json({ error: "GPA instance not initialized." });
     }
 
-    const addedCourse = await gpaCalculatorInstance.addCourse(course, grade, isMajor);
+    const addedCourse = await gpaCalculatorInstance.addCourse(course);
 
     if (addedCourse) {
       res.status(200).json({

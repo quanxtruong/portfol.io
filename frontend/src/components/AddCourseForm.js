@@ -3,14 +3,12 @@ import { CourseworkContext } from "../context/CourseworkContext";
 
 const AddCourseForm = () => {
   const [course, setCourse] = useState("");
-  const [isMajor, setIsMajor] = useState(false);
   const { addCourse } = useContext(CourseworkContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addCourse(course, isMajor);
+    await addCourse(course);
     setCourse("");
-    setIsMajor(false);
   };
 
   return (
@@ -22,14 +20,6 @@ const AddCourseForm = () => {
           value={course}
           onChange={(e) => setCourse(e.target.value)}
           required
-        />
-      </label>
-      <label>
-        Major Course:
-        <input
-          type="checkbox"
-          checked={isMajor}
-          onChange={(e) => setIsMajor(e.target.checked)}
         />
       </label>
       <button type="submit">Add Course</button>

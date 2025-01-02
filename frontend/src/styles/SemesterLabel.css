@@ -54,3 +54,16 @@
 .course-bank-section {
   width:50%;
 }
+
+.empty-drop-area {
+  border: 2px dashed gray;
+  padding: 1em;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.empty-message {
+  font-style: italic;
+  color: gray;
+}
+

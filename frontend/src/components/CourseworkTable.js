@@ -21,9 +21,9 @@ const CourseworkTable = () => {
 
   const groupedByAcademicYear = groupByAcademicYear(coursework);
 
-  const handleDrop = (courseId, newSemester, grade) => {
+  const handleDrop = (courseId, newSemester) => {
     // Update the semester first
-    updateCourseSemester(courseId, newSemester)
+    updateCourseSemester(courseId, newSemester);
   };
 
   const courseBank = coursework.filter(
@@ -32,11 +32,12 @@ const CourseworkTable = () => {
 
   return (
     <div className="coursework-grid">
-      {/* Render the Course Bank */}
+      {/* Always render the Course Bank */}
       <div className="course-bank-section">
         <SemesterLabel
           semester="Course Bank"
           courses={courseBank}
+          showHeaders={courseBank.length > 0} // Show headers only if courses exist
           onDrop={handleDrop}
           onGradeChange={updateGrade}
           onToggleMajor={toggleMajor}
@@ -63,6 +64,7 @@ const CourseworkTable = () => {
                           : parseInt(academicYear, 10) + 1
                       }`}
                       courses={semesterCourses}
+                      showHeaders={true} // Always show headers for semesters
                       onDrop={handleDrop}
                       onGradeChange={updateGrade}
                       onToggleMajor={toggleMajor}

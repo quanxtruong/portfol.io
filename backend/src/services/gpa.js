@@ -140,7 +140,7 @@ class GPA {
       }));
   }
 
-  addCourse(course, isMajor) {
+  addCourse(course) {
     let record = null;
     const upperCourse = course.toUpperCase();
     const csvFilePath =
@@ -184,7 +184,7 @@ class GPA {
             "Credit Hours": record["Credit Hours"] || "0",
             "Curriculum Flags": record["Curriculum Flags"] || "none",
             "School(s) Enrolled": record["School(s) Enrolled"] || "NASC",
-            "Major Course": isMajor ? "Yes" : "No",
+            "Major Course": "No",
             Semester: record.Semester || "Course Bank",
           };
 

@@ -35,7 +35,7 @@ export const CourseworkProvider = ({ children }) => {
   // Add a new course
   const addCourse = async (course, isMajor) => {
     try {
-      const response = await axios.post("/api/coursework", { course, isMajor });
+      const response = await axios.post("/api/coursework", { course });
       if (response.status === 200) {
         await fetchCoursework(); // Refresh coursework and GPA
       }
