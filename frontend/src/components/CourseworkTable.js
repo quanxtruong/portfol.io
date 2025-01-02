@@ -21,8 +21,9 @@ const CourseworkTable = () => {
 
   const groupedByAcademicYear = groupByAcademicYear(coursework);
 
-  const handleDrop = (courseId, newSemester) => {
-    updateCourseSemester(courseId, newSemester);
+  const handleDrop = (courseId, newSemester, grade) => {
+    // Update the semester first
+    updateCourseSemester(courseId, newSemester)
   };
 
   const courseBank = coursework.filter(
@@ -33,42 +34,47 @@ const CourseworkTable = () => {
     <div className="coursework-grid">
       {/* Render the Course Bank */}
       <div className="course-bank-section">
-        <h3>Course Bank</h3>
         <SemesterLabel
           semester="Course Bank"
           courses={courseBank}
           onDrop={handleDrop}
-          onGradeChange={() => {}}
-          onToggleMajor={() => {}}
+          onGradeChange={updateGrade}
+          onToggleMajor={toggleMajor}
           onRemove={removeCourse}
         />
       </div>
-  
+
       {/* Render academic years */}
-      {Object.entries(groupedByAcademicYear).map(([academicYear, semesters]) => (
-        <div key={academicYear} className="academic-year-group">
-          <h3>{academicYear}–{parseInt(academicYear, 10) + 1} Academic Year</h3>
-          <div className="column-container">
-            {["Fall", "Spring", "Summer"].map((semester) => {
-              const semesterCourses = semesters[semester] || [];
-              return semesterCourses.length > 0 ? (
-                <div key={`${academicYear}-${semester}`} className="column">
-                  <SemesterLabel
-                    semester={`${semester} ${
-                      semester === "Fall" ? academicYear : parseInt(academicYear, 10) + 1
-                    }`}
-                    courses={semesterCourses}
-                    onDrop={handleDrop}
-                    onGradeChange={updateGrade}
-                    onToggleMajor={toggleMajor}
-                    onRemove={removeCourse}
-                  />
-                </div>
-              ) : null; // Only render if there are courses
-            })}
+      {Object.entries(groupedByAcademicYear).map(
+        ([academicYear, semesters]) => (
+          <div key={academicYear} className="academic-year-group">
+            <h3>
+              {academicYear}–{parseInt(academicYear, 10) + 1} Academic Year
+            </h3>
+            <div className="column-container">
+              {["Fall", "Spring", "Summer"].map((semester) => {
+                const semesterCourses = semesters[semester] || [];
+                return semesterCourses.length > 0 ? (
+                  <div key={`${academicYear}-${semester}`} className="column">
+                    <SemesterLabel
+                      semester={`${semester} ${
+                        semester === "Fall"
+                          ? academicYear
+                          : parseInt(academicYear, 10) + 1
+                      }`}
+                      courses={semesterCourses}
+                      onDrop={handleDrop}
+                      onGradeChange={updateGrade}
+                      onToggleMajor={toggleMajor}
+                      onRemove={removeCourse}
+                    />
+                  </div>
+                ) : null; // Only render if there are courses
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 };

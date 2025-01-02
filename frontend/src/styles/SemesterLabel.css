@@ -1,0 +1,56 @@
+.semester-label {
+  padding: 1em;
+  background-color: #fff;
+  transition: background-color 0.3s ease; /* Optional smooth transition */
+}
+
+.semester-label.is-over {
+  background-color: #e0e0e0;
+}
+
+
+.semester-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.semester-table th,
+.semester-table td {
+  padding: 0.5em;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.semester-table th:nth-child(2), /* Target the Course Name column */
+  .semester-table td:nth-child(2) {
+  width: 30%; /* Adjust percentage as needed for desired width */
+}
+
+.semester-table th:nth-child(3), /* Target the Course Name column */
+  .semester-table td:nth-child(2) {
+  width: 11%; /* Adjust percentage as needed for desired width */
+}
+
+.semester-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.semester-table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+.semester-table tr:hover td {
+  background-color: #e0f7fa;
+}
+
+.course-name {
+  white-space: nowrap; /* Prevents wrapping */
+  overflow: hidden; /* Ensures overflow is clipped */
+  text-overflow: ellipsis; /* Adds ellipsis for overflow text */
+}
+
+.course-bank-section {
+  width:50%;
+}

@@ -1,12 +1,3 @@
-
-/* Ensure the table has a fixed layout for consistent column widths */
-table {
-  table-layout: fixed; /* Fix column widths */
-  width: 100%; /* Ensure the table spans the full width */
-  border-collapse: collapse; /* Remove gaps between cells */
-  margin: 0; /* Remove unnecessary margin around the table */
-}
-
 /* General styling for table cells */
 td {
   vertical-align: middle; /* Align content vertically in the center */

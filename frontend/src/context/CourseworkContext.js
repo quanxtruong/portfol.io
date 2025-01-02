@@ -107,12 +107,6 @@ export const CourseworkProvider = ({ children }) => {
     }, {});
   };
   
-  
-  
-  
-  
-  
-
   const toggleMajor = async (courseId) => {
     try {
       const response = await axios.post("/api/coursework/toggle-major", { courseId });
