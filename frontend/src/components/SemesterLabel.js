@@ -19,6 +19,8 @@ const SemesterLabel = ({
     }),
   }));
 
+  
+
   return (
     <div className={`semester-label ${isOver ? "is-over" : ""}`} ref={drop}>
       <h3>{semester}</h3>

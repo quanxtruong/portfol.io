@@ -323,6 +323,10 @@ class GPA {
     // Update the semester field
     course.Semester = newSemester;
 
+    if (course.Type != "In-Residence") {
+        return true;
+    }
+
     const gradePoints = GRADE_POINTS[course.Grade] || 0;
     const creditHours = parseFloat(course["Credit Hours"]) || 0;
 

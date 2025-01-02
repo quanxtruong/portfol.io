@@ -21,7 +21,9 @@ const CourseworkRow = ({ course, onGradeChange, onToggleMajor, onRemove }) => {
       }}
     >
       <td>{course["Course ID"]}</td>
-      <td className="course-name" title={course["Course Name"]}>{course["Course Name"]}</td>
+      <td className="course-name" title={course["Course Name"]}>
+        {course["Course Name"]}
+      </td>
       <td className="grade">
         <input
           type="text"
